@@ -15,6 +15,9 @@ steps:
   - name: compare
     notebook: steps/compare
     after: [totals, counts]
+  - name: big_sales            # visual data prep (S2); runs alongside totals and counts
+    notebook: steps/big_sales.designer
+    writes: [big_sales]
 
 inputs:
   sales: {}
@@ -22,6 +25,7 @@ inputs:
 outputs:
   totals: {}
   counts: {}
+  big_sales: {}
 
 settings:              # name: default
   min_amount: 0
@@ -35,3 +39,4 @@ sandbox:
   outputs:
     totals: "`sconset-db-01`.sandbox_matt.staging_out"
     counts: "`sconset-db-01`.sandbox_matt.staging_other"
+    big_sales: "`sconset-db-01`.sandbox_matt.staging_big"
