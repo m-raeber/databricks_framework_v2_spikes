@@ -1,0 +1,40 @@
+# r2x spike S3/S12: process definition file (RX-35). Throwaway test process.
+format: 1
+helper: 0.1.0          # helper install file: /Volumes/sconset-db-01/r2x_spike/libraries/r2x_helper-0.1.0-py3-none-any.whl
+
+libraries:             # exact versions; the framework compares what each run reports
+  pyyaml: 6.0.3
+
+# A step starts when every step in its `after` list has finished.
+# A step with no `after` starts at once, so totals and counts run at the same time.
+# `writes` names the outputs a step writes; steps that can run at the same time must not share one.
+steps:
+  - name: totals
+    notebook: steps/totals
+    writes: [totals]
+  - name: counts
+    sql: steps/counts.sql
+    writes: [counts]
+  - name: compare
+    notebook: steps/compare
+    after: [totals, counts]
+
+inputs:
+  sales: {}
+
+outputs:
+  totals: {}
+  counts: {}
+
+settings:              # name: default
+  min_amount: 0
+  fail_step: ""        # spike only: name of a step that should fail on purpose
+
+# Used only when someone runs a step by hand in Databricks.
+sandbox:
+  request_id: manual-try
+  inputs:
+    sales: {table: "`sconset-db-01`.r2x_spike.input_sample", version: 1}
+  outputs:
+    totals: "`sconset-db-01`.sandbox_matt.staging_out"
+    counts: "`sconset-db-01`.sandbox_matt.staging_other"
