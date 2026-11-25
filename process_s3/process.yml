@@ -16,7 +16,7 @@ steps:
     notebook: steps/compare
     after: [totals, counts]
   - name: big_sales            # visual data prep (S2); runs alongside totals and counts
-    notebook: steps/big_sales.designer
+    notebook: steps/big_sales.designer.ipynb   # visual data prep: give the full file name
     writes: [big_sales]
 
 inputs:
