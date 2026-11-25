@@ -1,0 +1,4 @@
+# r2x spike S3: the only place this process names versions. Every notebook installs this file
+# with the same fixed first line, so changing a version is a one-line change here.
+/Volumes/sconset-db-01/r2x_spike/libraries/r2x_helper-0.2.0-py3-none-any.whl
+pyyaml==6.0.3

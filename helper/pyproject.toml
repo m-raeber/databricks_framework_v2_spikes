@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "r2x_helper"
-version = "0.1.0"
+version = "0.2.0"
 description = "r2x spike: tiny helper that turns process.yml and passed run values into plain values (RX-35)"
 requires-python = ">=3.10"
 dependencies = ["pyyaml>=6"]

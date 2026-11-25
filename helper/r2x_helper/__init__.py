@@ -12,7 +12,7 @@ from dataclasses import dataclass
 
 import yaml
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"  # 0.2.0: versions live in requirements.txt, so process.yml no longer names the helper
 KNOWN_FORMATS = {1}
 
 
@@ -78,8 +78,6 @@ def get_values(process_file=None, passed=None):
         spec = yaml.safe_load(f) or {}
     if spec.get("format") not in KNOWN_FORMATS:
         raise ValueError(f"{path}: format {spec.get('format')!r} is not one this helper reads ({sorted(KNOWN_FORMATS)})")
-    if str(spec.get("helper")) != __version__:
-        raise RuntimeError(f"{path} pins helper {spec.get('helper')!r} but helper {__version__} is installed")
 
     inputs = spec.get("inputs") or {}
     outputs = spec.get("outputs") or {}

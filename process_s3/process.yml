@@ -1,9 +1,6 @@
 # r2x spike S3/S12: process definition file (RX-35). Throwaway test process.
+# Versions (the helper and every library) live only in requirements.txt next to this file.
 format: 1
-helper: 0.1.0          # helper install file: /Volumes/sconset-db-01/r2x_spike/libraries/r2x_helper-0.1.0-py3-none-any.whl
-
-libraries:             # exact versions; the framework compares what each run reports
-  pyyaml: 6.0.3
 
 # A step starts when every step in its `after` list has finished.
 # A step with no `after` starts at once, so totals and counts run at the same time.
